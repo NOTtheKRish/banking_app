@@ -14,9 +14,9 @@ public class LoginPage extends JFrame implements ActionListener {
     public JButton LoginBtn;
 
     public LoginPage(){
-        JFrame frame = new JFrame("Finance Management System");
+        JFrame frame = new JFrame("Banking Application");
         
-        WelcomeLabel = new JLabel("Welcome To Financial Management System");
+        WelcomeLabel = new JLabel("Banking Application");
         WelcomeLabel.setBounds(230,30,700,100);
         WelcomeLabel.setFont(new Font("Serif",Font.BOLD,20));
         
