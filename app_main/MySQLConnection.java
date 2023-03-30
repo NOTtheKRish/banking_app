@@ -17,7 +17,7 @@ public class MySQLConnection{
         return null;
     }
     public static void main(String[] args){
-        String response = new Login().initLogin("rishi", "rish@");
+        String response = new LoginController().initLogin("rishi", "rish@");
         System.out.println("Response from Login().initLogin() : "+response);
         if(response.equals("Login Success!")){
             try{

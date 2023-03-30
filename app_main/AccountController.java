@@ -1,7 +1,7 @@
 package app_main;
 import java.sql.*;
 
-public class AccountSettings {
+public class AccountController {
     public String updatePassword(String username, String password){
         try{
             String result = new String();
@@ -16,16 +16,19 @@ public class AccountSettings {
                 result = "Account Doesn't Exists";
             }else{
                 // ResultSet is not Empty!
+                int userId = 0;
                 do{
-                    if(rs.getString("username").equals(username) && rs.getString("password").equals(password)){
-                        // login credentials are correct
-                        result = "Login Success!";
-                    }else if(rs.getString("username").equals(username) && !(rs.getString("password").equals(password))){
-                        // invalid password entered
-                        result = "Invalid Password!";
-                    }
-                    // System.out.println("Result : "+result);
+                    userId = rs.getInt("id");
                 }while(rs.next());
+                try{
+                    PreparedStatement pS = conn.prepareStatement("UPDATE users SET password = ? WHERE ID = ?");
+                    pS.setString(1, password);
+                    pS.setInt(2, userId);
+                }catch(Exception eX){
+                    System.out.println("Exception : "+eX);
+                }
+
+                result = "Account Password Updated!";
             }
             return result;
         }catch(Exception e){

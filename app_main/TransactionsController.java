@@ -1,6 +1,6 @@
 package app_main;
 
-public class Transactions {
+public class TransactionsController {
     public void display(){
         
     }

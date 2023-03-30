@@ -1,5 +1,5 @@
 package app_main.views;
-import app_main.Login;
+import app_main.LoginController;
 
 // Factory Packages
 import java.awt.Font;
@@ -68,7 +68,7 @@ public class LoginPage extends JFrame implements ActionListener {
             ResponseLabel.setText(message);
         }else{
             // all data filled
-            message = new Login().initLogin(username, password);
+            message = new LoginController().initLogin(username, password);
             ResponseLabel.setText(message);
             if(message.equals("Login Success!")){
                 try{

@@ -1,9 +1,16 @@
 package app_main;
-import java.awt.List;
 import java.sql.*;
-import java.util.HashMap;
 
-public class Login {
+public class LoginController {
+    public int activeId = 0;
+    public String activeUsername = new String();
+
+    public String getUsername(){
+        return activeUsername;
+    }
+    public int getUserId(){
+        return activeId;
+    }
     public String initLogin(String username, String password){
         try{
             String result = new String();
@@ -22,6 +29,8 @@ public class Login {
                     if(rs.getString("username").equals(username) && rs.getString("password").equals(password)){
                         // login credentials are correct
                         result = "Login Success!";
+                        activeId = rs.getInt("id");
+                        activeUsername = username;
                     }else if(rs.getString("username").equals(username) && !(rs.getString("password").equals(password))){
                         // invalid password entered
                         result = "Invalid Password!";
