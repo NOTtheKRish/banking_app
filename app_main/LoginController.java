@@ -1,6 +1,8 @@
 package app_main;
 import java.sql.*;
 
+import app_main.views.LoginPage;
+
 public class LoginController {
     public int activeId = 0;
     public String activeUsername = new String();
@@ -43,5 +45,10 @@ public class LoginController {
             System.out.println("Exception : "+e);
         }
         return "Something Went Wrong! Try Again";
+    }
+    public void logout(){
+        activeId = 0;
+        activeUsername = new String();
+        new LoginPage();
     }
 }

@@ -16,32 +16,4 @@ public class MySQLConnection{
         }
         return null;
     }
-    public static void main(String[] args){
-        String response = new LoginController().initLogin("rishi", "rish@");
-        System.out.println("Response from Login().initLogin() : "+response);
-        if(response.equals("Login Success!")){
-            try{
-                Thread.sleep(1000);
-                System.out.println("Page Moved to Dashboard");
-            }catch(Exception e){
-                System.out.println("Exception : "+e);
-            }
-        }
-    }
-
-    // public static void main(String[] args){
-    //     try{
-    //         Class.forName("com.mysql.jdbc.Driver");
-    //         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName, dbUser, dbPass);
-    //         Statement stmt = conn.createStatement();
-    //         ResultSet rS = stmt.executeQuery("SELECT * FROM users");
-
-    //         while(rS.next()){
-    //             System.out.println(rS.getInt("id")+ " - "+rS.getString("name"));
-    //         }
-    //         conn.close();
-    //     }catch(Exception e){
-    //         System.out.println("Exception : "+e);
-    //     }
-    // }
 }

@@ -7,17 +7,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class LoginPage extends JFrame implements ActionListener {
+public class LoginPage implements ActionListener {
+    LoginController user = new LoginController();
+    public JFrame frame;
     public JLabel WelcomeLabel,UsernameLabel,PassLabel,ResponseLabel;
     public JTextField UsernameField;
     public JPasswordField PassField;
     public JButton LoginBtn;
 
     public LoginPage(){
-        JFrame frame = new JFrame("Banking Application");
+        frame = new JFrame("Banking Application");
         
         WelcomeLabel = new JLabel("Banking Application");
-        WelcomeLabel.setBounds(230,30,700,100);
+        WelcomeLabel.setBounds(300,30,700,100);
         WelcomeLabel.setFont(new Font("Serif",Font.BOLD,20));
         
         UsernameLabel = new JLabel("Username");
@@ -28,7 +30,7 @@ public class LoginPage extends JFrame implements ActionListener {
         PassLabel.setBounds(325,236,130,10);
         PassLabel.setFont(new Font("Serif",Font.BOLD,12));
 
-        ResponseLabel = new JLabel("Response Comes Here!");
+        ResponseLabel = new JLabel("");
         ResponseLabel.setBounds(337,400,700,25);
 
         LoginBtn = new JButton("Login");
@@ -49,6 +51,7 @@ public class LoginPage extends JFrame implements ActionListener {
         frame.add(LoginBtn);
         frame.add(ResponseLabel);
 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800,500);
         frame.setLayout(null);
         frame.setVisible(true);
@@ -68,12 +71,14 @@ public class LoginPage extends JFrame implements ActionListener {
             ResponseLabel.setText(message);
         }else{
             // all data filled
-            message = new LoginController().initLogin(username, password);
+            message = user.initLogin(username, password);
             ResponseLabel.setText(message);
             if(message.equals("Login Success!")){
                 try{
                     Thread.sleep(1000);
                     // move to dashboard
+                    frame.dispose();
+                    new Dashboard(user);
                 }catch(Exception Ex){
                     System.out.println("Exception : "+Ex);
                 }
